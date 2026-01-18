@@ -1,0 +1,11 @@
+import environs
+
+env = environs.Env()
+env.read_env()
+
+TG_BOT_TOKEN = env.str("TG_BOT_TOKEN")
+JSON_PATH = env.str("JSON_PATH")
+LANGUAGE_CODE = "ru-RU"
+VK_GROUP_TOKEN = env.str("VK_GROUP_TOKEN")
+ERROR_BOT_TOKEN = env.str("ERROR_BOT_TOKEN")
+ERROR_CHAT_ID = env.int("ERROR_CHAT_ID")
