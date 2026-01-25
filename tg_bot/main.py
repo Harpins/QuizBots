@@ -1,16 +1,12 @@
 import asyncio
 from utils.logger import get_logger
-from aiogram import Bot, Dispatcher, types, F
-from aiogram.filters import Command
-from settings import (
-    TG_BOT_TOKEN,
-)
+from aiogram import Bot, Dispatcher
+from settings import TG_BOT_TOKEN
 from utils.error_bot import send_error_bot_note
 
-logger = get_logger(__name__)
+from tg_bot.handlers.quiz import router as quiz_router
 
-async def cmd_start(message: types.Message):
-    await message.answer("Привет! Просто напиши мне что-нибудь!")
+logger = get_logger(__name__)
 
 
 async def main():
@@ -18,7 +14,7 @@ async def main():
     bot = Bot(token=TG_BOT_TOKEN)
     dp = Dispatcher()
 
-    dp.message.register(cmd_start, Command("start"))
+    dp.include_router(quiz_router)
 
     logger.info("Бот запущен")
     await send_error_bot_note(f"tg-бот запущен", False)

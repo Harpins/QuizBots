@@ -1,9 +1,9 @@
-from aiogram.types import ReplyKeyboardMarkup
-from aiogram.utils.keyboard import ReplyKeyboardBuilder
+from aiogram.types import InlineKeyboardMarkup, InlineKeyboardButton
 
-def get_main_menu_kb() -> ReplyKeyboardMarkup:
-    """Основная клавиатура после /start"""
-    builder = ReplyKeyboardBuilder()
-    builder.button(text="Начать викторину")
-    return builder.as_markup(resize_keyboard=True)
 
+def get_quiz_keyboard():
+    buttons = [
+        [InlineKeyboardButton(text="Новый вопрос", callback_data="new_question")],
+        [InlineKeyboardButton(text="Показать ответ", callback_data="show_answer")],
+    ]
+    return InlineKeyboardMarkup(inline_keyboard=buttons)
