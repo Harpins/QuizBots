@@ -2,7 +2,7 @@ from aiogram import Router, F
 from aiogram.types import Message, CallbackQuery
 from aiogram.fsm.context import FSMContext
 
-from utils.redis_client import (
+from utils.redis_ops import (
     get_random_unused_question,
     set_user_current_question,
     get_user_current_question,

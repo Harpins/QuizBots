@@ -4,7 +4,7 @@ from vk_api.utils import get_random_id
 import re
 
 from settings import VK_GROUP_TOKEN
-from utils.redis_client import (
+from utils.redis_ops import (
     get_random_unused_question,
     set_user_current_question,
     add_used_question,
