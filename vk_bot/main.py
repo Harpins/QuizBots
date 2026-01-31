@@ -13,7 +13,6 @@ from utils.redis_client import (
 )
 from vk_bot.keyboards import get_quiz_keyboard
 from utils.logger import get_logger
-from utils.error_bot import send_error_bot_note_sync
 import traceback
 
 logger = get_logger(__name__)
@@ -126,21 +125,13 @@ if __name__ == "__main__":
     vk_session = vk_api.VkApi(token=VK_GROUP_TOKEN)
     vk = vk_session.get_api()
     longpoll = VkLongPoll(vk_session)
-    message = "VK-бот викторины запущен"
-    logger.info(message)
-    send_error_bot_note_sync(message, False)
+    logger.critical("VK-бот викторины запущен")
     try:
         main()
     except KeyboardInterrupt:
         logger.info("VK-бот остановлен вручную")
-        send_error_bot_note_sync("VK-бот викторины остановлен вручную", False)
     except Exception as e:
         error_msg = f"Ошибка в VK-боте: {type(e).__name__}: {e}"
         logger.error(error_msg)
         logger.error(traceback.format_exc()) 
-
-        try:
-            send_error_bot_note_sync(f"VK-бот: {error_msg}")
-        except Exception as notify_error:
-            logger.error(f"Не удалось отправить уведомление об ошибке: {notify_error}")
     
